@@ -1,5 +1,4 @@
 ﻿
-
 namespace Bank2026
 {
     internal class Program

@@ -1,25 +1,20 @@
 
 namespace Bank2026
 {
-    public class CurrentAccount
+    public class CurrentAccount : Account
     {
-        public string Number { get; set; }
-
-        public double Balance { get; private set; }
-
         public double CreditLine { get; set; }
 
-        public Person Owner { get; set; }
-
-        public CurrentAccount(string number, Person owner, double creditLine)
+        public CurrentAccount(
+            string number,
+            Person owner,
+            double creditLine)
+            : base(number, owner)
         {
-            Number = number;
-            Owner = owner;
             CreditLine = creditLine;
-            Balance = 0;
         }
 
-        public void Deposit(double amount)
+        public override void Withdraw(double amount)
         {
             if (amount <= 0)
             {
@@ -27,24 +22,18 @@ namespace Bank2026
                 return;
             }
 
-            Balance += amount;
-        }
-
-        public void Withdraw(double amount)
-        {
-            if (amount <= 0)
-            {
-                Console.WriteLine("Le montant doit être positif.");
-                return;
-            }
-
-            if (Balance - amount < -CreditLine)
+            if (amount > Balance + CreditLine)
             {
                 Console.WriteLine("Solde insuffisant.");
                 return;
             }
 
-            Balance -= amount;
+            WithdrawFromBalance(amount);
+        }
+
+        private void WithdrawFromBalance(double amount)
+        {
+            ChangeBalance(-amount);
         }
     }
 }
