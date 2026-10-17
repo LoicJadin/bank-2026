@@ -21,5 +21,31 @@ namespace Bank2026
         {
             Accounts.Remove(number);
         }
+
+        
+        public double GetBalance(string number)
+        {
+            return Accounts[number].Balance;
+        }
+
+        
+        public double GetTotalBalance(Person owner)
+        {
+            double total = 0;
+
+            foreach (CurrentAccount account in Accounts.Values)
+            {
+                if (account.Owner == owner)
+                {
+                    total += account.Balance;
+                }
+            }
+
+            return total;
+        }
+
+
     }
+
+    
 }
