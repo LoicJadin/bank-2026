@@ -28,5 +28,10 @@ namespace Bank2026
             ChangeBalance(-amount);
             DateLastWithdraw = DateTime.Now;
         }
+
+        protected override double CalculInterets()
+        {
+            return Balance * 0.045;
+        }
     }
 }

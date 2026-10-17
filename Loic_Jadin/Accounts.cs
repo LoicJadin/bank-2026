@@ -1,7 +1,7 @@
 
 namespace Bank2026
 {
-    public class Account
+    public abstract class Account
     {
         public string Number { get; set; } = string.Empty;
         public double Balance { get; private set; }
@@ -58,5 +58,11 @@ namespace Bank2026
             return Balance;
         }
 
+        protected abstract double CalculInterets();
+
+        public void ApplyInterest()
+        {
+            Balance += CalculInterets();
+        }
     }
 }

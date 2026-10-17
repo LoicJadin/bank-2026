@@ -35,5 +35,17 @@ namespace Bank2026
         {
             ChangeBalance(-amount);
         }
+
+        protected override double CalculInterets()
+        {
+            if (Balance > 0)
+            {
+                return Balance * 0.03;
+            }
+            else
+            {
+                return Balance * 0.0975;
+            }
+        }
     }
 }
