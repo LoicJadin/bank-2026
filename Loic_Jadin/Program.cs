@@ -1,5 +1,4 @@
 ﻿
-using System;
 
 namespace Bank2026
 {
@@ -14,19 +13,13 @@ namespace Bank2026
                 BirthDate = new DateTime(2002, 11, 13)
             };
 
-            CurrentAccount account =
-                new CurrentAccount("BE001", person, 200);
+            SavingsAccount savings =
+                new SavingsAccount("SAV001", person);
 
-            Bank bank = new Bank("Bank 2026");
+            savings.Deposit(500);
+            savings.Withdraw(100);
 
-            bank.AddAccount(account);
-
-            Console.WriteLine(bank.Name);
-            Console.WriteLine(bank.Accounts.Count);
-
-            bank.DeleteAccount("BE001");
-
-            Console.WriteLine(bank.Accounts.Count);
+            Console.WriteLine(savings.Balance);
         }
     }
 }
