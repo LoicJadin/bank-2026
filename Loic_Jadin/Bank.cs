@@ -3,16 +3,16 @@ namespace Bank2026
 {
     public class Bank
     {
-        public Dictionary<string, CurrentAccount> Accounts { get; private set; }
+        public Dictionary<string, Account> Accounts { get; private set; }
         public string Name { get; set; }
 
         public Bank(string name)
         {
             Name = name;
-            Accounts = new Dictionary<string, CurrentAccount>();
+            Accounts = new Dictionary<string, Account>();
         }
 
-        public void AddAccount(CurrentAccount account)
+        public void AddAccount(Account account)
         {
             Accounts.Add(account.Number, account);
         }
@@ -22,18 +22,16 @@ namespace Bank2026
             Accounts.Remove(number);
         }
 
-        
         public double GetBalance(string number)
         {
             return Accounts[number].Balance;
         }
 
-        
         public double GetTotalBalance(Person owner)
         {
             double total = 0;
 
-            foreach (CurrentAccount account in Accounts.Values)
+            foreach (Account account in Accounts.Values)
             {
                 if (account.Owner == owner)
                 {
@@ -43,9 +41,5 @@ namespace Bank2026
 
             return total;
         }
-
-
     }
-
-    
 }
